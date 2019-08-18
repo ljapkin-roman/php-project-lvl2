@@ -1,20 +1,19 @@
 <?php
-require __DIR__.'/../vendor/docopt/src/docopt.php';
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
 $doc = <<<'DOCOPT'
-Process FILE and optionally apply correction to either left-hand side or
-right-hand side.
-Usage: getdiff.php [-vqrh] [FILE] ...
-       getdiff.php (--left | --right) CORRECTION FILE
-Arguments:
-  FILE        optional input file
-  CORRECTION  correction angle, needs FILE, --left or --right to be present
+Generate diff
+Usage: 
+    gendiff (-h|--help)
+  gendiff (-v|--version)
 Options:
-  -h --help
-  -v       verbose mode
-  -q       quiet mode
-  -r       make report
-  --left   use left-hand side
-  --right  use right-hand side
+  -h --help                     Show this screen
+  -v --version                  Show version
 DOCOPT;
 $result = Docopt::handle($doc, array('version'=>'0.0.1'));
 foreach ($result as $k=>$v)
