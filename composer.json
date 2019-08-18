@@ -1,0 +1,21 @@
+{
+    "name": "ogurchik/gendiff",
+    "description": "i dont know yet",
+    "authors": [
+        {
+            "name": "roma",
+            "email": "silvervaza@gmail.com"
+        }
+    ],
+    "bin": [
+        "bin/gendiff"
+    ],
+    "autoload": {
+        "files": [
+            "src/gendiff.php"
+        ] 
+    },
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
