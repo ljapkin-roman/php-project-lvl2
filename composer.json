@@ -12,7 +12,9 @@
     ],
     "autoload": {
         "files": [
-            "src/gendiff.php"
+            "src/gendiff.php",
+            "src/generateDiff.php",
+            "src/calc.php"
         ] 
     },
     "require": {

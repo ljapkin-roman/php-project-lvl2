@@ -1,20 +1,23 @@
 <?php
-$autoloadPath1 = __DIR__ . '/../../../autoload.php';
-$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
-if (file_exists($autoloadPath1)) {
-    require_once $autoloadPath1;
-} else {
-    require_once $autoloadPath2;
-}
-$doc = <<<'DOCOPT'
+namespace Ogurchik\gendiff;
+use function Ogurchik\generateDiff\generateDiff;
+use function Ogurchik\calc\kukla;
+
+const DOC = <<<'DOCOPT'
 Generate diff
 Usage: 
     gendiff (-h|--help)
-  gendiff (-v|--version)
+    gendiff (-v|--version)
+    gendiff (--format <fmt>)
+    gendiff (--where <path>)
+    gendiff (<path> <path>)
 Options:
-  -h --help                     Show this screen
-  -v --version                  Show version
+    -h --help                     Show this screen
+    -v --version                  Show version
+    --format <fmt>                Report format [default: pretty]
+    --where  <path>                     Show where this program launch
 DOCOPT;
-$result = Docopt::handle($doc, array('version'=>'0.0.1'));
-foreach ($result as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+$result = \Docopt::handle(DOC, array('version'=>'0.0.1'));
+//foreach ($result as $k=>$v)
+    //echo $k.': '.json_encode($v).PHP_EOL;
+kukla();
