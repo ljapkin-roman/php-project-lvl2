@@ -20,4 +20,3 @@ DOCOPT;
 $result = \Docopt::handle(DOC, array('version'=>'0.0.1'));
 //foreach ($result as $k=>$v)
     //echo $k.': '.json_encode($v).PHP_EOL;
-kukla();

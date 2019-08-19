@@ -14,7 +14,8 @@
         "files": [
             "src/gendiff.php",
             "src/generateDiff.php",
-            "src/calc.php"
+            "src/calc.php",
+            "src/begin.php"
         ] 
     },
     "require": {
