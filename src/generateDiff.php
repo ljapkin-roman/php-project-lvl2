@@ -16,16 +16,7 @@ function getValidJson($str, $nameFile)
     }
     return $result;
 }
-/*function getRemovedItem($firstArr, $secondArr)
-{
-        $removedItems = [];
-        foreach ($seconArr as $index => $value) {
-                if (!array_key_exists($index, $firstArr)) {
-                        $removedItems[$index] = $value;
-                }
-        }
-        return $removedItems;
-}*/
+
 function getChangeItem($firstArr, $secondArr)
 {
         $changeItems = [];
@@ -37,9 +28,19 @@ function getChangeItem($firstArr, $secondArr)
         }
         return $changeItems;
 }
-function markupOutput($str, $sign = "", $arr)
-{
 
+function markupOutput($str, $arr, $sign = "")
+{
+        foreach ($arr as $index => $value) {
+                switch ($sign) {
+                case("+"):
+                        $str .= "  + {$index}: {$value}\n";
+                        break;
+                case(""):
+                        $str .= "    {$index}: {$value}\n";
+                        break;
+                }
+        }
 }
 function generateDiff($firstFile, $secondFile)
 {
@@ -52,5 +53,5 @@ function generateDiff($firstFile, $secondFile)
     $sameItems = array_intersect_assoc($data1, $data2);
     $removedItems = array_diff_key($data1, $data2);
     $changedItems = getChangeItem($data1, $data2);
-    $output = "{\n";
+    print_r($changedItems);
 }
