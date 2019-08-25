@@ -19,32 +19,31 @@ function getValidJson($pathToFile)
 function getChangeItem($firstArr, $secondArr)
 {
         $changeItems = [];
-        foreach ($secondArr as $index => $value) {
-                if (array_key_exists($index, $firstArr) && $firstArr[$index] !== $secondArr[$index]) {
-                   $changeItems[] = "  - $index: $firstArr[$index]"; 
-                   $changeItems[] = "  + $index: $secondArr[$index]"; 
-                }
+    foreach ($secondArr as $index => $value) {
+        if (array_key_exists($index, $firstArr) && $firstArr[$index] !== $secondArr[$index]) {
+            $changeItems[] = "  - $index: $firstArr[$index]";
+            $changeItems[] = "  + $index: $secondArr[$index]";
         }
+    }
         return $changeItems;
 }
 
 function markupOutput($arr, $sign = "")
 {
         $str = "";
-        foreach ($arr as $index => $value) {
-                switch ($sign) {
-                case("+"):
-                        $str .= "  + {$index}: {$value}\n";
-                        break;
-                case(""):
-                        $str .= "    {$index}: {$value}\n";
-                        break;
-                case("-"):
-                        $str .= "  - {$index}: {$value}\n";
-                        break;
-
-                }
+    foreach ($arr as $index => $value) {
+        switch ($sign) {
+            case ("+"):
+                $str .= "  + {$index}: {$value}\n";
+                break;
+            case (""):
+                $str .= "    {$index}: {$value}\n";
+                break;
+            case ("-"):
+                $str .= "  - {$index}: {$value}\n";
+                break;
         }
+    }
         return $str;
 }
 
@@ -58,7 +57,7 @@ function generateDiff($pathToFirstFile, $pathToSecondFile)
     $removedItems = array_diff_key($data1, $data2);
     $addedItems = array_diff_key($data2, $data1);
     $changedItems = getChangeItem($data1, $data2);
-    $output = "{\n"; 
+    $output = "{\n";
     $output = $output . markupOutput($sameItems) . markupOutput($removedItems, "-") . markupOutput($addedItems, "+");
     foreach ($changedItems as $item) {
         $output .= "$item \n";
