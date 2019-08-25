@@ -1,7 +1,7 @@
 <?php
 namespace Ogurchik\calc;
 
-function kukla() 
+function kukla()
 {
-   print_r("change sitution");
+    print_r("change sitution");
 }

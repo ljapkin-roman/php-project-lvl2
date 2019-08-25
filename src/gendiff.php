@@ -19,7 +19,7 @@ Options:
 DOCOPT;
 function parser()
 {
-    $result = \Docopt::handle(DOC, array('version'=>'0.0.1'));
+    $result = \Docopt::handle(DOC, array('version' => '0.0.1'));
     if ($result["--where"]) {
         print_r("gugenotu=y");
     }

@@ -4,10 +4,19 @@ require_once $autoload;
 use PHPUnit\Framework\TestCase;
 class AddTest extends TestCase
 {
-    public function testAdd()
+    /**
+     * @dataProvider addProvider
+     */
+    public function testAdd($a, $b, $exp)
     {
-        $stack = [];
-        $this->assertSame(9, add(3, 5));
-        $this->assertSame(5, add(3, 2));
+        $this->assertSame($exp, add($a, $b));
+    }
+    public function addProvider()
+    {
+        return [
+            [2, 3, 5],
+            [4, 5, 9],
+            [1, 1, 2]
+        ];
     }
 }
