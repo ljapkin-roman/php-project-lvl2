@@ -5,6 +5,10 @@ env:
 language: php
 php:
         - 7.2.19
+branches:
+        only:
+                - master
+                - dev
 install:
         - make install
 before_script:
