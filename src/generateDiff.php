@@ -64,4 +64,5 @@ function generateDiff($pathToFirstFile, $pathToSecondFile)
     }
     $output .= "}\n";
     print_r($output);
+    return $output;
 }
