@@ -1,8 +1,9 @@
 <?php
 namespace Ogurchik\generateDiff;
+require __DIR__ ."/../vendor/autoload.php";
 
-use function Ogurchik\parsers\areSameExtensions;
-
+use Ogurchik\src\checkFiles;
+use genDiff\Prime;
 function isFileExists($file)
 {
     if (!file_exists($file)) {
@@ -17,7 +18,7 @@ function getValidJson($pathToFile)
     }
     return $result;
 }
-
+ 
 function getChangeItem($firstArr, $secondArr)
 {
         $changeItems = [];
@@ -51,12 +52,19 @@ function markupOutput($arr, $sign = "")
 
 function generateDiff($pathToFirstFile, $pathToSecondFile)
 {
-        try {
-            areSameExtensions($pathToFirstFile, $pathToSecondFile);
-        } catch(Exception $e) {
-        print_r("throw exception ".$e->getMessage());
-            }
-    isFileExists($pathToFirstFile);
+    try {
+        isFileExists($pathToFirstFile);
+    } catch (\Exception $e) {
+        printf($e->getMessage());
+    }
+    try {
+        isFileExists($pathToSecondFile);
+    } catch (\Exception $e) {
+        printf($e->getMessage());
+       
+    }
+    $prime = new Prime($pathToFirstFile, $pathToSecondFile);
+    /*isFileExists($pathToFirstFile);
     isFileExists($pathToSecondFile);
     $data1 = getValidJson($pathToFirstFile);
     $data2 = getValidJson($pathToSecondFile);
@@ -71,5 +79,5 @@ function generateDiff($pathToFirstFile, $pathToSecondFile)
     }
     $output .= "}\n";
     print_r($output);
-    return $output;
+    return $output;*/
 }
