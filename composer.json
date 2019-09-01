@@ -15,8 +15,10 @@
             "src/gendiff.php",
             "src/generateDiff.php",
             "src/calc.php",
-            "src/begin.php"
-        ] 
+            "src/begin.php",
+            "src/parsers.php"
+        ] ,
+        "psr-4": {"genDiff\\": "src/"}
     },
     "require": {
         "docopt/docopt": "^1.0",

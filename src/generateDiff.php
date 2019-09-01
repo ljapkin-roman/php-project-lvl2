@@ -1,6 +1,8 @@
 <?php
 namespace Ogurchik\generateDiff;
 
+use function Ogurchik\parsers\areSameExtensions;
+
 function isFileExists($file)
 {
     if (!file_exists($file)) {
@@ -49,6 +51,11 @@ function markupOutput($arr, $sign = "")
 
 function generateDiff($pathToFirstFile, $pathToSecondFile)
 {
+        try {
+            areSameExtensions($pathToFirstFile, $pathToSecondFile);
+        } catch(Exception $e) {
+        print_r("throw exception ".$e->getMessage());
+            }
     isFileExists($pathToFirstFile);
     isFileExists($pathToSecondFile);
     $data1 = getValidJson($pathToFirstFile);
