@@ -2,14 +2,9 @@
 namespace Ogurchik\generateDiff;
 require __DIR__ ."/../vendor/autoload.php";
 
-use Ogurchik\src\checkFiles;
-use genDiff\Prime;
-function isFileExists($file)
-{
-    if (!file_exists($file)) {
-        throw new \Exception("{$file} is not exists\n");
-    }
-}
+use genDiff\CheckFiles;
+use genDiff\Parsers;
+
 function getValidJson($pathToFile)
 {
     $result = json_decode(file_get_contents($pathToFile), true);
@@ -52,18 +47,9 @@ function markupOutput($arr, $sign = "")
 
 function generateDiff($pathToFirstFile, $pathToSecondFile)
 {
-    try {
-        isFileExists($pathToFirstFile);
-    } catch (\Exception $e) {
-        printf($e->getMessage());
-    }
-    try {
-        isFileExists($pathToSecondFile);
-    } catch (\Exception $e) {
-        printf($e->getMessage());
-       
-    }
-    $prime = new Prime($pathToFirstFile, $pathToSecondFile);
+    $check = new CheckFiles($pathToFirstFile, $pathToSecondFile);
+    $content = new Parsers($pathToFirstFile);
+    print_r($content->parse());
     /*isFileExists($pathToFirstFile);
     isFileExists($pathToSecondFile);
     $data1 = getValidJson($pathToFirstFile);

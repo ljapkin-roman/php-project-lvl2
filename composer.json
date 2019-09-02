@@ -14,7 +14,6 @@
         "files": [
             "src/gendiff.php",
             "src/generateDiff.php",
-            "src/calc.php",
             "src/begin.php",
             "src/parsers.php"
         ] ,
